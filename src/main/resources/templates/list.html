@@ -16,22 +16,20 @@
             <th>#</th>
             <th>任务名称</th>
             <th>任务分组</th>
-            <th>任务状态</th>
             <th>任务执行方法</th>
             <th>cron 表达式</th>
             <th>任务描述</th>
             <th>时区</th>
             <th>开始时间</th>
             <th>结束时间</th>
-            <th>状态</th>
+            <th>任务状态</th>
         </tr>
         </thead>
         <tbody>
-        <tr  th:each="task : ${tasks}">
-            <th scope="row" th:text="${task.id}"></th>
+        <tr  th:each="task,thistask : ${tasks}">
+            <th scope="row" th:text="${thistask.count}"></th>
             <td th:text="${task.jobName}"></td>
             <td th:text="${task.jobGroup}"></td>
-            <td th:text="${task.jobStatus}"></td>
             <td th:text="${task.jobClass}"></td>
             <td th:text="${task.cronExpression}"></td>
             <td th:text="${task.jobDescription}"></td>

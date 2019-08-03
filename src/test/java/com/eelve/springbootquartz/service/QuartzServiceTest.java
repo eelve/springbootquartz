@@ -1,10 +1,8 @@
 package com.eelve.springbootquartz.service;
 
 import com.eelve.springbootquartz.constant.ScheduleStatus;
-import com.eelve.springbootquartz.entity.ScheduleJobEntity;
 import com.eelve.springbootquartz.job.Job;
 import com.eelve.springbootquartz.utils.RedisUtil;
-import com.eelve.springbootquartz.utils.ScheduleUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.quartz.Scheduler;
@@ -17,8 +15,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import static org.junit.Assert.*;
 
 /**
  * @author zhao.zhilue
@@ -56,14 +52,4 @@ public class QuartzServiceTest {
         }
     }
 
-    @Test
-    public void add() {
-        ScheduleJobEntity scheduleJob = new ScheduleJobEntity();
-
-        scheduleJob.setCreateTime(new Date());
-        scheduleJob.setStatus(ScheduleStatus.NORMAL.getValue());
-        scheduleJob.setCreateUserId(1L);
-        //this.save(scheduleJob);
-        ScheduleUtils.createScheduleJob(scheduler, scheduleJob);
-    }
 }

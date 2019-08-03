@@ -1,7 +1,7 @@
 package com.eelve.springbootquartz.validator;
 
 
-import com.eelve.springbootquartz.exception.EIPException;
+import com.eelve.springbootquartz.exception.IIOException;
 import org.apache.commons.lang.StringUtils;
 
 /**
@@ -17,7 +17,7 @@ public abstract class Assert {
      */
     public static void isBlank(String str, String message) {
         if (StringUtils.isBlank(str)) {
-            throw new EIPException(message);
+            throw new IIOException(message);
         }
     }
 
@@ -29,7 +29,7 @@ public abstract class Assert {
      */
     public static void isNull(Object object, String message) {
         if (object == null) {
-            throw new EIPException(message);
+            throw new IIOException(message);
         }
     }
 }

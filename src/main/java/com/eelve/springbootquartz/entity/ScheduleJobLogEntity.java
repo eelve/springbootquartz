@@ -1,7 +1,7 @@
 package com.eelve.springbootquartz.entity;
 
 
-import com.baomidou.mybatisplus.annotation.TableName;
+
 import lombok.Data;
 import java.io.Serializable;
 import java.util.Date;
@@ -9,7 +9,6 @@ import java.util.Date;
 /**
  * 定时任务日志
  */
-@TableName("schedule_job_log")
 @Data
 public class ScheduleJobLogEntity implements Serializable {
     private static final long serialVersionUID = 1L;

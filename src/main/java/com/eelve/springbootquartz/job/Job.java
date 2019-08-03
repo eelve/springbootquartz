@@ -2,7 +2,6 @@ package com.eelve.springbootquartz.job;
 
 import com.eelve.springbootquartz.entity.ScheduleJobLogEntity;
 import com.eelve.springbootquartz.service.QuartzService;
-import com.eelve.springbootquartz.service.ScheduleJobLogPlusService;
 import com.eelve.springbootquartz.service.ScheduleJobLogService;
 import com.eelve.springbootquartz.utils.SpringUtils;
 import lombok.extern.slf4j.Slf4j;
@@ -11,8 +10,6 @@ import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.scheduling.quartz.QuartzJobBean;
-
-import java.util.Date;
 
 /**
  * @ClassName Job
@@ -28,9 +25,8 @@ public class Job extends QuartzJobBean {
 
         ApplicationContext applicationContext = SpringUtils.getApplicationContext();
 
-        QuartzService quartzService = (QuartzService)applicationContext.getBean("quartzService");
         //获取spring bean
-        ScheduleJobLogPlusService scheduleJobLogService = (ScheduleJobLogPlusService) applicationContext.getBean("scheduleJobLogPlusService");
+        ScheduleJobLogService scheduleJobLogService = (ScheduleJobLogService) applicationContext.getBean("scheduleJobLogService");
 
 
         // 获取参数
@@ -43,6 +39,8 @@ public class Job extends QuartzJobBean {
         //任务开始时间
         long startTime = System.currentTimeMillis();
         try {
+            scheduleJobLogEntity.setClassName(jobExecutionContext.getJobDetail().getJobClass().toString());
+            scheduleJobLogEntity.setMethodName(jobExecutionContext.getJobDetail().getKey().toString());
             //任务执行总时长
             long times = System.currentTimeMillis() - startTime;
             scheduleJobLogEntity.setTimes((int)times);
@@ -52,7 +50,7 @@ public class Job extends QuartzJobBean {
             log.error("任务执行失败，任务ID：" + jobExecutionContext.getJobDetail()+ "  总共耗时：" + times + "毫秒", e);
             scheduleJobLogEntity.setTimes((int)times);
         } finally {
-            scheduleJobLogService.save(scheduleJobLogEntity);
+            scheduleJobLogService.saveLog(scheduleJobLogEntity);
         }
     }
 }

@@ -3,29 +3,29 @@ package com.eelve.springbootquartz.exception;
 /**
  * 自定义异常
  */
-public class EIPException extends RuntimeException {
+public class IIOException extends RuntimeException {
     private static final long serialVersionUID = 1L;
 
     private String msg;
     private int code = 500;
 
-    public EIPException(String msg) {
+    public IIOException(String msg) {
         super(msg);
         this.msg = msg;
     }
 
-    public EIPException(String msg, Throwable e) {
+    public IIOException(String msg, Throwable e) {
         super(msg, e);
         this.msg = msg;
     }
 
-    public EIPException(String msg, int code) {
+    public IIOException(String msg, int code) {
         super(msg);
         this.msg = msg;
         this.code = code;
     }
 
-    public EIPException(String msg, int code, Throwable e) {
+    public IIOException(String msg, int code, Throwable e) {
         super(msg, e);
         this.msg = msg;
         this.code = code;
